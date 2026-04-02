@@ -25,11 +25,12 @@ const otherItems = [
   { path: '/help', label: 'Help', icon: HelpCircle },
 ]
 
-// All routable items for mobile bottom bar (top 3 + settings)
+// All routable items for mobile bottom bar
 const mobileItems = [
   { path: '/', label: 'Dashboard', icon: LayoutDashboard },
-  { path: '/transactions', label: 'Transactions', icon: ArrowLeftRight },
+  { path: '/transactions', label: 'Txns', icon: ArrowLeftRight },
   { path: '/insights', label: 'Insights', icon: TrendingUp },
+  { path: '/help', label: 'Help', icon: HelpCircle },
   { path: '/settings', label: 'Settings', icon: Settings },
 ]
 
