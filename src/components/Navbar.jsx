@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import { Search, Sun, Moon, Bell, ChevronDown, Shield, Eye } from 'lucide-react'
+import { useLocation, Link } from 'react-router-dom'
+import { Search, Sun, Moon, Bell, ChevronDown, Shield, Eye, User } from 'lucide-react'
 import { useAppContext } from '../context/AppContext'
 
 /**
@@ -8,7 +8,7 @@ import { useAppContext } from '../context/AppContext'
  */
 const Navbar = () => {
   const location = useLocation()
-  const { darkMode, toggleDarkMode, role, setRole, searchQuery, setSearchQuery } = useAppContext()
+  const { darkMode, toggleDarkMode, role, setRole, searchQuery, setSearchQuery, userName } = useAppContext()
   const [roleDropdownOpen, setRoleDropdownOpen] = useState(false)
   const dropdownRef = useRef(null)
 
@@ -136,6 +136,20 @@ const Navbar = () => {
             <Bell className="w-5 h-5" />
             <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary" />
           </button>
+
+          {/* Profile Avatar — accessible on all screens including mobile */}
+          <Link
+            to="/profile"
+            className="flex items-center gap-2 pl-2 pr-1 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+            title="View Profile"
+          >
+            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <User className="w-4 h-4 text-primary" />
+            </div>
+            <span className="hidden md:inline text-sm font-medium text-slate-700 dark:text-slate-200 max-w-[80px] truncate">
+              {userName?.split(' ')[0]}
+            </span>
+          </Link>
         </div>
       </div>
 

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Decorative circles -->
+  <circle cx="1050" cy="100" r="200" fill="#F97316" opacity="0.08"/>
+  <circle cx="150" cy="530" r="150" fill="#F97316" opacity="0.06"/>
+  <!-- Logo icon -->
+  <rect x="80" y="200" width="64" height="64" rx="14" fill="#F97316"/>
+  <path d="M96 240L108 228L120 234L132 220L140 216" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="140" cy="216" r="3.5" fill="white"/>
+  <!-- Title -->
+  <text x="160" y="237" font-family="Inter, system-ui, sans-serif" font-size="48" font-weight="700" fill="white">FinSight</text>
+  <!-- Subtitle -->
+  <text x="82" y="310" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="400" fill="#94a3b8">Personal Finance Dashboard</text>
+  <!-- Feature pills -->
+  <rect x="82" y="360" width="180" height="40" rx="20" fill="#F97316" opacity="0.15"/>
+  <text x="118" y="386" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="500" fill="#F97316">📊 Live Charts</text>
+  <rect x="280" y="360" width="200" height="40" rx="20" fill="#F97316" opacity="0.15"/>
+  <text x="312" y="386" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="500" fill="#F97316">💰 Budget Tracker</text>
+  <rect x="498" y="360" width="180" height="40" rx="20" fill="#F97316" opacity="0.15"/>
+  <text x="530" y="386" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="500" fill="#F97316">🌙 Dark Mode</text>
+  <rect x="696" y="360" width="210" height="40" rx="20" fill="#F97316" opacity="0.15"/>
+  <text x="728" y="386" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="500" fill="#F97316">📱 Fully Responsive</text>
+  <!-- Tech stack -->
+  <text x="82" y="460" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="500" fill="#64748b">Built with React · Tailwind CSS · Recharts · Vite</text>
+  <!-- Bottom line -->
+  <rect x="82" y="530" width="120" height="4" rx="2" fill="#F97316"/>
+  <text x="82" y="570" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="400" fill="#475569">github.com/Vasundara-harika/finsight-dashboard</text>
+</svg>
