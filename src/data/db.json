@@ -1,0 +1,29 @@
+{
+  "transactions": [
+    { "id": "txn001", "date": "2025-01-05", "description": "Monthly Salary", "category": "Salary", "type": "income", "amount": 45000 },
+    { "id": "txn002", "date": "2025-01-08", "description": "Swiggy Order - Biryani", "category": "Food", "type": "expense", "amount": 450 },
+    { "id": "txn003", "date": "2025-01-10", "description": "House Rent", "category": "Rent", "type": "expense", "amount": 12000 },
+    { "id": "txn004", "date": "2025-01-12", "description": "Netflix Subscription", "category": "Entertainment", "type": "expense", "amount": 649 },
+    { "id": "txn005", "date": "2025-01-15", "description": "Electricity Bill", "category": "Utilities", "type": "expense", "amount": 1200 },
+    { "id": "txn006", "date": "2025-01-18", "description": "Uber Ride to Office", "category": "Transport", "type": "expense", "amount": 350 },
+    { "id": "txn007", "date": "2025-01-20", "description": "Amazon Shopping - Headphones", "category": "Shopping", "type": "expense", "amount": 2500 },
+    { "id": "txn008", "date": "2025-01-22", "description": "Freelance Payment - Web Design", "category": "Freelance", "type": "income", "amount": 12000 },
+    { "id": "txn009", "date": "2025-01-25", "description": "Grocery Shopping - BigBasket", "category": "Groceries", "type": "expense", "amount": 3500 },
+    { "id": "txn010", "date": "2025-02-05", "description": "Monthly Salary", "category": "Salary", "type": "income", "amount": 45000 },
+    { "id": "txn011", "date": "2025-02-07", "description": "Swiggy Order - Pizza", "category": "Food", "type": "expense", "amount": 680 },
+    { "id": "txn012", "date": "2025-02-10", "description": "House Rent", "category": "Rent", "type": "expense", "amount": 12000 },
+    { "id": "txn013", "date": "2025-02-12", "description": "Spotify Subscription", "category": "Entertainment", "type": "expense", "amount": 119 },
+    { "id": "txn014", "date": "2025-02-14", "description": "Phone Recharge - Jio", "category": "Utilities", "type": "expense", "amount": 299 },
+    { "id": "txn015", "date": "2025-02-16", "description": "Gym Membership", "category": "Health", "type": "expense", "amount": 800 },
+    { "id": "txn016", "date": "2025-02-18", "description": "Uber Ride to Mall", "category": "Transport", "type": "expense", "amount": 200 },
+    { "id": "txn017", "date": "2025-02-20", "description": "Amazon Shopping - Books", "category": "Shopping", "type": "expense", "amount": 1500 },
+    { "id": "txn018", "date": "2025-02-22", "description": "Grocery Shopping - DMart", "category": "Groceries", "type": "expense", "amount": 2000 },
+    { "id": "txn019", "date": "2025-02-25", "description": "Cashback Reward", "category": "Salary", "type": "income", "amount": 500 },
+    { "id": "txn020", "date": "2025-03-05", "description": "Monthly Salary", "category": "Salary", "type": "income", "amount": 45000 },
+    { "id": "txn021", "date": "2025-03-08", "description": "Swiggy Order - Thali", "category": "Food", "type": "expense", "amount": 800 },
+    { "id": "txn022", "date": "2025-03-10", "description": "House Rent", "category": "Rent", "type": "expense", "amount": 12000 },
+    { "id": "txn023", "date": "2025-03-12", "description": "Medical Checkup", "category": "Health", "type": "expense", "amount": 1500 },
+    { "id": "txn024", "date": "2025-03-15", "description": "Amazon Shopping - Clothes", "category": "Shopping", "type": "expense", "amount": 3000 },
+    { "id": "txn025", "date": "2025-03-20", "description": "Grocery Shopping - Reliance Fresh", "category": "Groceries", "type": "expense", "amount": 2800 }
+  ]
+}
