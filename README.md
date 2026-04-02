@@ -10,7 +10,7 @@
 [![Recharts](https://img.shields.io/badge/Recharts-3.8-FF6384?style=for-the-badge&logo=recharts&logoColor=white)](https://recharts.org/)
 [![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
-[🌐 Live Demo](https://finsight-dashboard-vasundara.vercel.app) • [👩‍💻 GitHub](https://github.com/Vasundara-harika) • [💼 LinkedIn](https://www.linkedin.com/in/vasundara-harika-varanasi/)
+[🌐 Live Demo](https://finsight-dashboard-git-main-vasundara-harika-varanasis-projects.vercel.app/) • [👩‍💻 GitHub](https://github.com/Vasundara-harika) • [💼 LinkedIn](https://www.linkedin.com/in/vasundara-harika-varanasi/)
 
 </div>
 
@@ -21,12 +21,17 @@
 <div align="center">
 <table>
   <tr>
-    <td><img src="public/screenshot1.png" width="400"/><br/><sub>Dashboard Overview</sub></td>
-    <td><img src="public/screenshot2.png" width="400"/><br/><sub>Dark Mode Interface</sub></td>
+    <td><img src="public/screenshot1.png" width="280"/><br/><sub>Dashboard Overview</sub></td>
+    <td><img src="public/screenshot2.png" width="280"/><br/><sub>Dark Mode Interface</sub></td>
+    <td><img src="public/screenshot3.png" width="280"/><br/><sub>Transaction Management</sub></td>
   </tr>
   <tr>
-    <td><img src="public/screenshot3.png" width="400"/><br/><sub>Transaction Management</sub></td>
-    <td><img src="public/screenshot4.png" width="400"/><br/><sub>Advanced Insights & Analytics</sub></td>
+    <td><img src="public/screenshot4.png" width="280"/><br/><sub>Advanced Insights & Analytics</sub></td>
+    <td><img src="public/screenshot5.png" width="280"/><br/><sub>Profile Page</sub></td>
+    <td><img src="public/screenshot6.png" width="280"/><br/><sub>Settings Page</sub></td>
+  </tr>
+  <tr>
+    <td><img src="public/screenshot7.png" width="280"/><br/><sub>Help & Support</sub></td>
   </tr>
 </table>
 </div>
