@@ -35,7 +35,7 @@ const dailyTips = [
 const DEFAULT_BUDGETS = { Food: 3000, Shopping: 5000, Entertainment: 2000 }
 
 const Dashboard = () => {
-  const { transactions, totalIncome, totalExpenses, totalBalance, loading } = useAppContext()
+  const { transactions, totalIncome, totalExpenses, totalBalance, loading, userName } = useAppContext()
 
   // Budget limits from localStorage
   const [budgets] = useState(() => {
@@ -116,7 +116,7 @@ const Dashboard = () => {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
             <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100">
-              {greeting}, Andi 👋
+              {greeting}, {userName} 👋
             </h2>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">{todayStr}</p>
           </div>

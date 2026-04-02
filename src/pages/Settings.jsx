@@ -39,6 +39,8 @@ const Settings = () => {
     importTransactions,
     clearAllTransactions,
     addToast,
+    userName,
+    setUserName,
   } = useAppContext()
 
   const [activeTab, setActiveTab] = useState('General')
@@ -46,10 +48,7 @@ const Settings = () => {
   const fileInputRef = useRef(null)
 
   // General tab state (persisted to localStorage)
-  const [name, setName] = useState(() => {
-    const p = localStorage.getItem('finsight_profile')
-    return p ? JSON.parse(p).name : 'Andi Johnson'
-  })
+  const [name, setName] = useState(userName)
   const [email, setEmail] = useState(() => {
     const p = localStorage.getItem('finsight_profile')
     return p ? JSON.parse(p).email : 'andi.johnson@finsight.in'
@@ -75,6 +74,10 @@ const Settings = () => {
     localStorage.setItem('finsight_profile', JSON.stringify({ ...profile, name, email }))
     localStorage.setItem('finsight_date_format', dateFormat)
     localStorage.setItem('finsight_number_format', numberFormat)
+    // Sync name globally so Sidebar, Dashboard, Profile update instantly
+    if (name !== userName) {
+      setUserName(name)
+    }
     addToast('Settings saved successfully')
   }
 

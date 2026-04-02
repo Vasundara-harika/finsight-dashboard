@@ -39,6 +39,8 @@ const Profile = () => {
     darkMode,
     toggleDarkMode,
     addToast,
+    userName,
+    setUserName,
   } = useAppContext()
 
   // Editable profile fields
@@ -48,7 +50,7 @@ const Profile = () => {
     return saved
       ? JSON.parse(saved)
       : {
-          name: 'Andi Johnson',
+          name: userName,
           email: 'andi.johnson@finsight.in',
           phone: '+91 98765 43210',
           location: 'Hyderabad, Telangana',
@@ -85,6 +87,10 @@ const Profile = () => {
   const handleSave = () => {
     setProfile(editProfile)
     localStorage.setItem('finsight_profile', JSON.stringify(editProfile))
+    // Sync name globally so Sidebar, Dashboard, etc. update instantly
+    if (editProfile.name !== userName) {
+      setUserName(editProfile.name)
+    }
     setEditing(false)
     addToast('Profile updated successfully')
   }

@@ -7,6 +7,7 @@ import {
   HelpCircle,
   User,
 } from 'lucide-react'
+import { useAppContext } from '../context/AppContext'
 
 /**
  * Sidebar — fixed left navigation with user profile, menu links, and other pages.
@@ -34,6 +35,7 @@ const mobileItems = [
 
 const Sidebar = () => {
   const location = useLocation()
+  const { userName } = useAppContext()
 
   const isActive = (path) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path)
@@ -58,7 +60,7 @@ const Sidebar = () => {
             <User className="w-8 h-8 text-primary" />
           </div>
           <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
-            Andi Johnson
+            {userName}
           </h3>
           <p className="text-xs text-slate-500 dark:text-slate-400">
             Financial Manager

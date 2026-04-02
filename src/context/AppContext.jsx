@@ -28,6 +28,21 @@ export const AppProvider = ({ children }) => {
   // Role state — 'viewer' or 'admin'
   const [role, setRole] = useState('viewer')
 
+  // Global user profile name — synced across Sidebar, Dashboard, Profile, Settings
+  const [userName, setUserNameState] = useState(() => {
+    const saved = localStorage.getItem('finsight_profile')
+    return saved ? JSON.parse(saved).name : 'Andi Johnson'
+  })
+
+  const setUserName = useCallback((name) => {
+    setUserNameState(name)
+    // Also update the full profile object in localStorage
+    const saved = localStorage.getItem('finsight_profile')
+    const profile = saved ? JSON.parse(saved) : {}
+    profile.name = name
+    localStorage.setItem('finsight_profile', JSON.stringify(profile))
+  }, [])
+
   // Dark mode — read initial value from localStorage
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('darkMode') === 'true'
@@ -199,6 +214,10 @@ export const AppProvider = ({ children }) => {
     // Role
     role,
     setRole,
+
+    // User profile
+    userName,
+    setUserName,
 
     // Theme
     darkMode,
