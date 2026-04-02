@@ -13,6 +13,8 @@ import {
   getInitials,
   getPercentageChange,
   getCategoryColor,
+  getTimeRangeLabel,
+  getPreviousPeriodTransactions,
 } from '../utils/helpers'
 
 /**
@@ -35,7 +37,7 @@ const dailyTips = [
 const DEFAULT_BUDGETS = { Food: 3000, Shopping: 5000, Entertainment: 2000 }
 
 const Dashboard = () => {
-  const { transactions, totalIncome, totalExpenses, totalBalance, loading, userName } = useAppContext()
+  const { transactions, totalIncome, totalExpenses, totalBalance, loading, userName, timeRange, timeFilteredTransactions } = useAppContext()
 
   // Budget limits from localStorage
   const [budgets] = useState(() => {
@@ -43,27 +45,41 @@ const Dashboard = () => {
     return saved ? JSON.parse(saved) : DEFAULT_BUDGETS
   })
 
-  // Calculate summary data from transactions
-  const summary = useMemo(() => calculateSummary(transactions), [transactions])
-  const monthlyData = useMemo(() => calculateMonthlyData(transactions), [transactions])
-  const categoryTotals = useMemo(() => calculateCategoryTotals(transactions), [transactions])
+  // Calculate summary data from time-filtered transactions
+  const summary = useMemo(() => calculateSummary(timeFilteredTransactions), [timeFilteredTransactions])
+  const monthlyData = useMemo(() => calculateMonthlyData(timeFilteredTransactions), [timeFilteredTransactions])
+  const categoryTotals = useMemo(() => calculateCategoryTotals(timeFilteredTransactions), [timeFilteredTransactions])
 
-  // Calculate percentage changes between months
+  // Calculate percentage changes vs previous period
   const percentageChanges = useMemo(() => {
-    if (monthlyData.length < 2) return { balance: null, income: null, expenses: null }
-    const curr = monthlyData[monthlyData.length - 1]
-    const prev = monthlyData[monthlyData.length - 2]
-    return {
-      balance: getPercentageChange(curr.balance, prev.balance),
-      income: getPercentageChange(curr.income, prev.income),
-      expenses: getPercentageChange(curr.expenses, prev.expenses),
+    if (timeRange === 'all') {
+      // For all-time, compare last 2 months
+      if (monthlyData.length < 2) return { balance: null, income: null, expenses: null }
+      const curr = monthlyData[monthlyData.length - 1]
+      const prev = monthlyData[monthlyData.length - 2]
+      return {
+        balance: getPercentageChange(curr.balance, prev.balance),
+        income: getPercentageChange(curr.income, prev.income),
+        expenses: getPercentageChange(curr.expenses, prev.expenses),
+      }
     }
-  }, [monthlyData])
+    // For week/month/year, compare vs the previous equivalent period
+    const prevTxns = getPreviousPeriodTransactions(transactions, timeRange)
+    const prevSummary = calculateSummary(prevTxns)
+    return {
+      balance: getPercentageChange(totalBalance, prevSummary.totalBalance),
+      income: getPercentageChange(totalIncome, prevSummary.totalIncome),
+      expenses: getPercentageChange(totalExpenses, prevSummary.totalExpenses),
+    }
+  }, [monthlyData, timeRange, transactions, totalBalance, totalIncome, totalExpenses])
 
-  // Recent transactions (last 5, sorted by date desc)
+  // Time range label for summary cards
+  const periodLabel = getTimeRangeLabel(timeRange)
+
+  // Recent transactions (last 5 from time-filtered, sorted by date desc)
   const recentTransactions = useMemo(() => {
-    return [...transactions].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5)
-  }, [transactions])
+    return [...timeFilteredTransactions].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 5)
+  }, [timeFilteredTransactions])
 
   // Top spending categories with progress bar percentages
   const topCategories = useMemo(() => {
@@ -130,7 +146,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <SummaryCard
           icon={Wallet}
-          label="Total Balance"
+          label={`Balance · ${periodLabel}`}
           amount={totalBalance}
           percentageChange={percentageChanges.balance}
           iconBg="bg-primary"
@@ -138,7 +154,7 @@ const Dashboard = () => {
         />
         <SummaryCard
           icon={TrendingUp}
-          label="Total Income"
+          label={`Income · ${periodLabel}`}
           amount={totalIncome}
           percentageChange={percentageChanges.income}
           iconBg="bg-green-500"
@@ -146,7 +162,7 @@ const Dashboard = () => {
         />
         <SummaryCard
           icon={TrendingDown}
-          label="Total Expenses"
+          label={`Expenses · ${periodLabel}`}
           amount={totalExpenses}
           percentageChange={percentageChanges.expenses}
           iconBg="bg-red-500"

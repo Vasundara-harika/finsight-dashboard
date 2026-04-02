@@ -33,9 +33,9 @@ const CustomTooltip = ({ active, payload, label }) => {
 }
 
 const BalanceTrendChart = () => {
-  const { transactions, loading } = useAppContext()
+  const { timeFilteredTransactions, loading } = useAppContext()
 
-  const data = useMemo(() => calculateMonthlyData(transactions), [transactions])
+  const data = useMemo(() => calculateMonthlyData(timeFilteredTransactions), [timeFilteredTransactions])
 
   if (loading) {
     return (

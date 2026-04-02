@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { Search, Sun, Moon, Bell, ChevronDown, Shield, Eye, User } from 'lucide-react'
+import { Search, Sun, Moon, Bell, ChevronDown, Shield, Eye, User, Calendar } from 'lucide-react'
 import { useAppContext } from '../context/AppContext'
 
 /**
@@ -8,7 +8,14 @@ import { useAppContext } from '../context/AppContext'
  */
 const Navbar = () => {
   const location = useLocation()
-  const { darkMode, toggleDarkMode, role, setRole, searchQuery, setSearchQuery, userName } = useAppContext()
+  const { darkMode, toggleDarkMode, role, setRole, searchQuery, setSearchQuery, userName, timeRange, setTimeRange } = useAppContext()
+
+  const timeRanges = [
+    { value: 'week', label: 'Week' },
+    { value: 'month', label: 'Month' },
+    { value: 'year', label: 'Year' },
+    { value: 'all', label: 'All Time' },
+  ]
   const [roleDropdownOpen, setRoleDropdownOpen] = useState(false)
   const dropdownRef = useRef(null)
 
@@ -45,6 +52,9 @@ const Navbar = () => {
 
   // Only make search functional on transactions page
   const isTransactionsPage = location.pathname === '/transactions'
+
+  // Show time selector on Dashboard and Transactions pages
+  const showTimeSelector = location.pathname === '/' || location.pathname === '/transactions'
 
   return (
     <header className="sticky top-0 z-20 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700">
@@ -152,6 +162,28 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
+
+      {/* Time Range Selector — shown on Dashboard & Transactions */}
+      {showTimeSelector && (
+        <div className="px-4 md:px-6 pb-2 pt-1 flex items-center gap-2 overflow-x-auto no-scrollbar">
+          <Calendar className="w-4 h-4 text-slate-400 flex-shrink-0 hidden sm:block" />
+          <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-700/50 rounded-lg p-1">
+            {timeRanges.map((tr) => (
+              <button
+                key={tr.value}
+                onClick={() => setTimeRange(tr.value)}
+                className={`px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition-all duration-200 ${
+                  timeRange === tr.value
+                    ? 'bg-primary text-white shadow-sm'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-600/50'
+                }`}
+              >
+                {tr.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Mobile Search — only on transactions page */}
       {isTransactionsPage && (

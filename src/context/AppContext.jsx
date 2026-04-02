@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useMemo, useCallback, useEffect } from 'react'
 import useTransactions from '../hooks/useTransactions'
+import { filterByTimeRange } from '../utils/helpers'
 
 const AppContext = createContext()
 
@@ -48,6 +49,9 @@ export const AppProvider = ({ children }) => {
     return localStorage.getItem('darkMode') === 'true'
   })
 
+  // Time range filter — 'week' | 'month' | 'year' | 'all'
+  const [timeRange, setTimeRange] = useState('all')
+
   // Search and filter state
   const [searchQuery, setSearchQuery] = useState('')
   const [filterCategory, setFilterCategory] = useState('All')
@@ -72,15 +76,21 @@ export const AppProvider = ({ children }) => {
     setToasts((prev) => prev.filter((t) => t.id !== id))
   }, [])
 
-  // ─── Reactively computed summary values (BUG FIX) ───
+  // ─── Time-range-filtered transactions (used for summaries, charts, dashboard) ───
+  const timeFilteredTransactions = useMemo(
+    () => filterByTimeRange(transactions, timeRange),
+    [transactions, timeRange]
+  )
+
+  // ─── Reactively computed summary values based on time range ───
   const totalIncome = useMemo(
-    () => transactions.filter((t) => t.type === 'income').reduce((sum, t) => sum + t.amount, 0),
-    [transactions]
+    () => timeFilteredTransactions.filter((t) => t.type === 'income').reduce((sum, t) => sum + t.amount, 0),
+    [timeFilteredTransactions]
   )
 
   const totalExpenses = useMemo(
-    () => transactions.filter((t) => t.type === 'expense').reduce((sum, t) => sum + t.amount, 0),
-    [transactions]
+    () => timeFilteredTransactions.filter((t) => t.type === 'expense').reduce((sum, t) => sum + t.amount, 0),
+    [timeFilteredTransactions]
   )
 
   const totalBalance = useMemo(() => totalIncome - totalExpenses, [totalIncome, totalExpenses])
@@ -109,9 +119,9 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('darkMode', String(val))
   }, [])
 
-  // Filter and sort transactions based on current state
+  // Filter and sort transactions based on current state (time range + search + category + date)
   const filteredTransactions = useMemo(() => {
-    let result = [...transactions]
+    let result = [...timeFilteredTransactions]
 
     // Search by description
     if (searchQuery.trim()) {
@@ -151,7 +161,7 @@ export const AppProvider = ({ children }) => {
     }
 
     return result
-  }, [transactions, searchQuery, filterCategory, sortBy, dateFrom, dateTo])
+  }, [timeFilteredTransactions, searchQuery, filterCategory, sortBy, dateFrom, dateTo])
 
   // Export filtered transactions to CSV
   const exportToCSV = useCallback(() => {
@@ -206,10 +216,15 @@ export const AppProvider = ({ children }) => {
     loading,
     error,
 
-    // Computed summaries (reactively update)
+    // Computed summaries (reactively update based on timeRange)
     totalIncome,
     totalExpenses,
     totalBalance,
+
+    // Time range
+    timeRange,
+    setTimeRange,
+    timeFilteredTransactions,
 
     // Role
     role,

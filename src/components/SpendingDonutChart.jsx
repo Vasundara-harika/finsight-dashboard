@@ -30,9 +30,9 @@ const CustomTooltip = ({ active, payload }) => {
 }
 
 const SpendingDonutChart = () => {
-  const { transactions, loading } = useAppContext()
+  const { timeFilteredTransactions, loading } = useAppContext()
 
-  const data = useMemo(() => calculateCategoryTotals(transactions), [transactions])
+  const data = useMemo(() => calculateCategoryTotals(timeFilteredTransactions), [timeFilteredTransactions])
 
   if (loading) {
     return (

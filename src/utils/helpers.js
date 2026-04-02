@@ -178,3 +178,89 @@ export const generateId = () => {
 export const printReport = () => {
   window.print()
 }
+
+/**
+ * Filter transactions by a time range relative to today.
+ * @param {Array} transactions - Array of transaction objects with a date field
+ * @param {'week'|'month'|'year'|'all'} range - The time period to filter by
+ * @returns {Array} Filtered transactions within the given time range
+ */
+export const filterByTimeRange = (transactions, range) => {
+  if (range === 'all') return transactions
+
+  const now = new Date()
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+
+  let startDate
+  switch (range) {
+    case 'week':
+      startDate = new Date(today)
+      startDate.setDate(today.getDate() - 7)
+      break
+    case 'month':
+      startDate = new Date(today)
+      startDate.setDate(today.getDate() - 30)
+      break
+    case 'year':
+      startDate = new Date(today.getFullYear(), 0, 1)
+      break
+    default:
+      return transactions
+  }
+
+  return transactions.filter((txn) => new Date(txn.date) >= startDate)
+}
+
+/**
+ * Get a human-readable label for the current time range.
+ * @param {'week'|'month'|'year'|'all'} range
+ * @returns {string} e.g. "This Week", "This Month", "This Year", "All Time"
+ */
+export const getTimeRangeLabel = (range) => {
+  switch (range) {
+    case 'week': return 'This Week'
+    case 'month': return 'This Month'
+    case 'year': return 'This Year'
+    default: return 'All Time'
+  }
+}
+
+/**
+ * Get the previous period's transactions for percentage change comparison.
+ * @param {Array} transactions - All transactions
+ * @param {'week'|'month'|'year'|'all'} range
+ * @returns {Array} Transactions from the previous equivalent period
+ */
+export const getPreviousPeriodTransactions = (transactions, range) => {
+  if (range === 'all') return []
+
+  const now = new Date()
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+
+  let startDate, endDate
+  switch (range) {
+    case 'week':
+      endDate = new Date(today)
+      endDate.setDate(today.getDate() - 7)
+      startDate = new Date(today)
+      startDate.setDate(today.getDate() - 14)
+      break
+    case 'month':
+      endDate = new Date(today)
+      endDate.setDate(today.getDate() - 30)
+      startDate = new Date(today)
+      startDate.setDate(today.getDate() - 60)
+      break
+    case 'year':
+      endDate = new Date(today.getFullYear() - 1, 11, 31)
+      startDate = new Date(today.getFullYear() - 1, 0, 1)
+      break
+    default:
+      return []
+  }
+
+  return transactions.filter((txn) => {
+    const d = new Date(txn.date)
+    return d >= startDate && d < endDate
+  })
+}

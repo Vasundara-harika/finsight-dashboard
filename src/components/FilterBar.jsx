@@ -1,4 +1,4 @@
-import { Search, Plus, Download, X } from 'lucide-react'
+import { Search, Plus, Download, X, Calendar } from 'lucide-react'
 import { useAppContext } from '../context/AppContext'
 import { CATEGORIES } from '../utils/helpers'
 
@@ -20,6 +20,8 @@ const FilterBar = ({ onAddClick }) => {
     dateTo,
     setDateTo,
     exportToCSV,
+    timeRange,
+    setTimeRange,
   } = useAppContext()
 
   const hasDateFilter = dateFrom || dateTo
@@ -39,6 +41,18 @@ const FilterBar = ({ onAddClick }) => {
             className="w-full pl-10 pr-4 py-2.5 rounded-lg text-sm bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-slate-200 dark:border-slate-700 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30 transition-all"
           />
         </div>
+
+        {/* Time Range Filter */}
+        <select
+          value={timeRange}
+          onChange={(e) => setTimeRange(e.target.value)}
+          className="px-3 py-2.5 rounded-lg text-sm bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30 transition-all cursor-pointer"
+        >
+          <option value="all">All Time</option>
+          <option value="week">This Week</option>
+          <option value="month">This Month</option>
+          <option value="year">This Year</option>
+        </select>
 
         {/* Category Filter */}
         <select
