@@ -6,6 +6,7 @@ import Insights from './pages/Insights'
 import Settings from './pages/Settings'
 import Profile from './pages/Profile'
 import Help from './pages/Help'
+import NotFound from './pages/NotFound'
 
 /**
  * App component — defines routes within the shared Layout shell.
@@ -21,7 +22,7 @@ function App() {
         <Route path="settings" element={<Settings />} />
         <Route path="profile" element={<Profile />} />
         <Route path="help" element={<Help />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   )

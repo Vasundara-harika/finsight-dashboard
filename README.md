@@ -1,94 +1,134 @@
-# FinSight — Finance Dashboard
+<div align="center">
 
-A clean, interactive personal finance dashboard built with React, Vite, and Tailwind CSS. This project was developed as part of the Zorvyn FinTech Pvt. Ltd. Frontend Developer Intern screening assignment.
+# 💰 FinSight: Personal Finance Dashboard
 
-**Built by:** Vasundara Harika
+### A professional-grade, role-based finance management interface for Zorvyn FinTech
 
----
+[![React](https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-5.1-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Recharts](https://img.shields.io/badge/Recharts-3.8-FF6384?style=for-the-badge&logo=recharts&logoColor=white)](https://recharts.org/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
-## Features
+[🌐 Live Demo](https://finsight-dashboard-vasundara.vercel.app) • [👩‍💻 GitHub](https://github.com/Vasundara-harika) • [💼 LinkedIn](https://www.linkedin.com/in/vasundara-harika-varanasi/)
 
-### Core Features (Phase 1)
-- **Dashboard Overview** — Summary cards (Total Balance, Income, Expenses) with count-up animations, percentage change indicators, welcome banner, and smart daily tips
-- **Time-Based Visualization** — Line chart showing cumulative balance trend over months (Recharts)
-- **Categorical Visualization** — Donut chart showing spending distribution by category
-- **Transaction List** — Full list with date, amount, category, type, avatar initials, color-coded amounts, and pie chart overview
-- **Transaction Filtering** — Filter by category, date range (From/To), search by description
-- **Transaction Search & Sort** — Search by description, sort by date or amount (ascending/descending)
-- **Role-Based UI (RBAC)** — Viewer role sees data only; Admin role can add, edit, and delete transactions. Switch via navbar dropdown
-- **Insights Section** — Key metrics (highest spending category, savings rate, biggest expense, MoM change) with grouped bar chart and horizontal category ranking chart
-- **State Management** — React Context API manages transactions, role, theme, search, filters, sorting, and toasts
-- **Responsive Design** — Works on mobile (bottom tab bar) and desktop (fixed sidebar)
-
-### Phase 2 Enhancements (All Implemented)
-- **Bug Fix: Reactive Summary Cards** — `useMemo`-based computed totals (`totalIncome`, `totalExpenses`, `totalBalance`) in context; functional state updaters in `useTransactions` eliminate stale-closure bugs
-- **Welcome Banner** — Personalized greeting with time-of-day awareness and smart financial tip based on real data
-- **Monthly Budget Overview** — Dashboard shows progress bars for Food, Shopping, and Entertainment budgets with color-coded status
-- **Date Range Filter** — From/To date pickers in FilterBar with clear button; integrated into context filtering
-- **Delete Transactions** — Admin can delete individual transactions via trash icon with confirmation modal
-- **Bulk Select & Delete** — Checkbox selection with select-all, bulk action bar, and batch delete with confirmation
-- **Financial Health Score** — Circular progress ring on Insights page computed from savings rate, spending diversity, transaction history, and expense trends; includes breakdown checklist and contextual tips
-- **Toast Notifications** — Global toast system (success/error/warning) with auto-dismiss, stacked display, and manual close
-- **Confirmation Modals** — Reusable `ConfirmModal` component for destructive actions (delete, clear all)
-- **Count-Up Hook** — `useCountUp` hook with `requestAnimationFrame` replaces inline animation in SummaryCard
-- **Profile Page** (`/profile`) — Editable personal info, financial summary, account preferences (currency, theme, notifications, default view), and recent activity
-- **Settings Page** (`/settings`) — Tabbed UI (General, Appearance, Data, About) with profile quick edit, financial preferences, notification toggles, theme cards, accent color showcase, export CSV/JSON, import JSON, danger zone with clear-all, and assignment completion checklist
-- **Help Page** (`/help`) — Searchable FAQ accordion, getting started steps, key features grid, and contact section
-- **Sidebar Navigation** — Updated with routable links to Settings, Profile, and Help; profile avatar links to /profile
-- **Page Transitions** — Fade-in page enter animations across all routes
-- **Export JSON** — Full transaction export as formatted JSON from Settings → Data
-- **Import Transactions** — Upload a JSON file to bulk-import transactions via Settings → Data
-- **Dark Mode Compliance** — All new pages and components use Tailwind `dark:` variants matching the existing design system
+</div>
 
 ---
 
-## Pages
+## 📸 Screenshots
 
-| Route | Page | Description |
-|---|---|---|
-| `/` | Dashboard | Welcome banner, summary cards, charts, recent transactions, budget progress |
-| `/transactions` | Transactions | Pie chart, stats, filter bar with date range, transaction table with bulk select/delete |
-| `/insights` | Insights | Insight cards, financial health score with circular ring, monthly comparison & category charts |
-| `/profile` | Profile | Editable personal info, financial summary, preferences, recent activity |
-| `/settings` | Settings | Tabbed settings (General, Appearance, Data, About) with import/export and danger zone |
-| `/help` | Help & Support | Searchable FAQ, getting started guide, features overview, contact |
-
----
-
-## Tech Stack
-
-| Technology | Purpose |
-|---|---|
-| React 18 + Vite | Frontend framework and build tool |
-| Tailwind CSS v3 | Utility-first styling with dark mode (`class` strategy) |
-| Recharts | Line, Pie, and Bar charts |
-| Lucide React | Icon library |
-| React Router DOM v6 | Client-side routing (6 routes) |
-| JSON Server | Mock REST API on `localhost:3001` (GET, POST, PUT, DELETE) |
-| React Context API | Global state management with reactive computed values |
+<div align="center">
+<table>
+  <tr>
+    <td><img src="public/screenshot1.png" width="400"/><br/><sub>Dashboard Overview</sub></td>
+    <td><img src="public/screenshot2.png" width="400"/><br/><sub>Dark Mode Interface</sub></td>
+  </tr>
+  <tr>
+    <td><img src="public/screenshot3.png" width="400"/><br/><sub>Transaction Management</sub></td>
+    <td><img src="public/screenshot4.png" width="400"/><br/><sub>Advanced Insights & Analytics</sub></td>
+  </tr>
+</table>
+</div>
 
 ---
 
-## Getting Started
+## 📖 About
+
+**FinSight** is a clean, interactive finance dashboard designed to provide users with deep clarity over their financial health. Built as part of a professional frontend assessment, it demonstrates mastery of modern frontend architecture, including **Role-Based Access Control (RBAC)**, complex data visualization, and responsive state management—all without relying on a dedicated backend.
+
+---
+
+## ✨ Features & Assignment Checklist
+
+### Core Requirements (Completed ✅)
+- 📊 **Dashboard Overview** — Real-time tracking of Total Balance, Income, and Expenses with time-period filtering (Week/Month/Year/All).
+- 📈 **Time-Based Visualization** — Interactive line charts showing balance trends filtered by selected time range.
+- 🥧 **Categorical Visualization** — Donut charts for spending breakdown by category.
+- 📋 **Transaction Management** — Full list with Search, Category Filtering, Time Range, and Date/Amount Sorting.
+- 🔐 **Role-Based UI** — Simulation of **Admin** (Add/Edit enabled) and **Viewer** (Read-only) roles.
+- 💡 **Insights Section** — Dedicated analysis with bar charts for monthly comparisons.
+- ⚛️ **State Management** — Robust implementation using React Context API.
+- 📱 **Responsive Design** — Fully optimized for Mobile, Tablet, and Desktop views.
+
+### Optional Enhancements (Implemented 🚀)
+- 🌙 **Dark Mode** — Toggle with `localStorage` persistence.
+- 💾 **Data Persistence** — Local storage used to keep data after page refreshes.
+- ⚡ **Mock API Integration** — Full CRUD simulation using JSON Server.
+- 📤 **Export to CSV** — One-click download of all transaction data.
+- 🏥 **Financial Health Score** — Algorithmic calculation based on savings and expense ratios.
+- 🔔 **Toast Notifications** — Instant user feedback for all actions.
+- 🎨 **Animations** — Smooth transitions and Count-Up effects on summary cards.
+- ⏱️ **Time-Period Filter** — Week, Month, Year, and All-Time selector across Dashboard and Transactions.
+- 🚫 **404 Not Found Page** — Custom error page with clean design and navigation back to Dashboard.
+- ⚙️ **Extra Pages** — Profile, Settings, and Help & FAQ documentation.
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technology |
+|------------|---------|
+| **Framework** | React 18 (Vite) |
+| **Styling** | Tailwind CSS 3.4 |
+| **Charts** | Recharts |
+| **Icons** | Lucide React |
+| **Routing** | React Router DOM v6 |
+| **API Simulation** | JSON Server |
+| **Deployment** | Vercel |
+
+---
+
+## 📁 Project Structure
+```text
+finance-dashboard/
+├── src/
+│   ├── components/       # Reusable UI (Charts, Modals, Tables, etc.)
+│   ├── context/          # AppContext.jsx (Global state management)
+│   ├── data/             # Static db.json for production fallback
+│   ├── hooks/            # useTransactions.js & useCountUp.js
+│   ├── pages/            # Dashboard, Transactions, Insights, Settings, etc.
+│   ├── utils/            # api.js & helpers.js (formatting, logic)
+│   └── App.jsx           # Routing & Layout configuration
+├── public/               # Images, Favicons, and Screenshots
+├── db.json               # Local database for JSON Server
+├── tailwind.config.js    # Design system and theme tokens
+├── vercel.json           # Deployment configuration (SPA routing fix)
+└── package.json          # Dependencies and scripts
+```
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js v18+ installed
-- npm package manager
+- Node.js >= 18
+- npm
 
 ### Installation
 
+**1. Clone the repository:**
+
 ```bash
-# 1. Clone the repository
-git clone <your-repo-url>
-cd finance-dashboard
+git clone https://github.com/Vasundara-harika/finsight-dashboard.git
+cd finsight-dashboard
+```
 
-# 2. Install dependencies
+**2. Install dependencies:**
+
+```bash
 npm install
+```
 
-# 3. Start JSON Server (Terminal 1)
-npm run server
+**3. Run Mock API (Terminal 1):**
 
-# 4. Start React dev server (Terminal 2)
+```bash
+npx json-server --watch db.json --port 3001
+```
+
+**4. Run Application (Terminal 2):**
+
+```bash
 npm run dev
 ```
 
@@ -104,69 +144,7 @@ npm run preview
 
 ---
 
-## Project Structure
-
-```
-finance-dashboard/
-├── db.json                            ← Mock data for JSON Server
-├── index.html
-├── package.json
-├── tailwind.config.js
-├── postcss.config.js
-├── vite.config.js
-└── src/
-    ├── App.jsx                        ← Route definitions (6 pages)
-    ├── main.jsx                       ← Entry point with providers
-    ├── index.css                      ← Tailwind + custom animations
-    ├── context/
-    │   └── AppContext.jsx             ← Global state, toasts, reactive totals
-    ├── components/
-    │   ├── Sidebar.jsx                ← Fixed sidebar + mobile bottom bar
-    │   ├── Navbar.jsx                 ← Top bar with search, theme, role
-    │   ├── Layout.jsx                 ← Page shell with sidebar + navbar + toast
-    │   ├── SummaryCard.jsx            ← Metric card with useCountUp animation
-    │   ├── BalanceTrendChart.jsx      ← Line chart (balance over months)
-    │   ├── SpendingDonutChart.jsx     ← Donut chart (spending by category)
-    │   ├── TransactionTable.jsx       ← Transaction list with select/delete
-    │   ├── FilterBar.jsx              ← Search + filter + sort + date range
-    │   ├── AddTransactionModal.jsx    ← Add/Edit transaction form modal
-    │   ├── ConfirmModal.jsx           ← Reusable confirmation dialog
-    │   ├── Toast.jsx                  ← Stacked toast notification container
-    │   ├── EmptyState.jsx             ← No results placeholder
-    │   ├── InsightCard.jsx            ← Single insight metric card
-    │   ├── MonthlyComparisonChart.jsx ← Grouped bar (income vs expenses)
-    │   └── CategoryBarChart.jsx       ← Horizontal bar (category ranking)
-    ├── pages/
-    │   ├── Dashboard.jsx              ← Dashboard with welcome banner + budgets
-    │   ├── Transactions.jsx           ← Transactions with bulk select/delete
-    │   ├── Insights.jsx               ← Insights with financial health score
-    │   ├── Profile.jsx                ← User profile page
-    │   ├── Settings.jsx               ← Tabbed settings page
-    │   └── Help.jsx                   ← Help & FAQ page
-    ├── data/
-    │   └── db.json                    ← Reference copy of mock data
-    ├── hooks/
-    │   ├── useTransactions.js         ← Custom hook for CRUD API calls
-    │   └── useCountUp.js             ← Count-up animation hook
-    └── utils/
-        └── helpers.js                 ← Currency formatting, calculations
-```
-
----
-
-## Design Decisions
-
-- **Color System**: Warm orange (#F97316) primary accent with clean white cards on light blue-gray backgrounds. Fully themed dark mode with slate tones.
-- **Component Architecture**: Each UI element is a self-contained component with clear props. Pages compose components together.
-- **State Management**: Single Context provider avoids prop drilling. `useMemo` ensures derived data (filtered transactions, chart data, summary totals) is computed efficiently and reactively.
-- **Responsive Strategy**: CSS Grid + Tailwind breakpoints. Sidebar collapses to bottom tab bar on mobile. Cards stack vertically.
-- **Error Handling**: Graceful fallback to localStorage when JSON Server is unavailable. Loading skeletons prevent layout shift.
-- **Bug Fix Strategy**: Stale closure bug in `addTransaction`/`editTransaction` fixed by using functional state updaters (`prev => ...`) instead of referencing `transactions` directly. Summary values computed via `useMemo` keyed on `[transactions]` for instant reactivity.
-- **Toast System**: Built into Context with auto-dismiss timers. No external library needed.
-
----
-
-## Role-Based Access Control
+## 🔐 Role-Based Access Control
 
 | Feature | Viewer | Admin |
 |---|---|---|
@@ -184,6 +162,29 @@ Switch roles using the dropdown in the navbar. The UI visibly changes — Admin 
 
 ---
 
-## License
+## 🔐 Technical Decisions & Edge Cases
 
-This project was built for educational and evaluation purposes as part of the Zorvyn FinTech internship screening process.
+- **Service Layer Pattern**: Implemented an API utility that attempts to connect to JSON Server but automatically falls back to static data if the server is offline (essential for Vercel demo).
+- **RBAC Logic**: UI elements like "Add Transaction" and "Edit" are conditionally rendered based on the active role stored in Context, simulating true security protocols.
+- **404 Handling**: Implemented a custom `NotFound` page to handle invalid URLs gracefully and guide users back to the dashboard.
+- **Performance**: Used `useMemo` for heavy chart data calculations to prevent unnecessary re-renders.
+- **Time-Period Filtering**: Global `timeRange` state in Context filters transactions across all views (Summary Cards, Charts, Transactions Table) with previous-period percentage change comparison.
+- **Color System**: Warm orange (#F97316) primary accent with clean white cards on light blue-gray backgrounds. Fully themed dark mode with slate tones.
+- **Toast System**: Built into Context with auto-dismiss timers. No external library needed.
+- **Bug Fix Strategy**: Stale closure bug in `addTransaction`/`editTransaction` fixed by using functional state updaters (`prev => ...`). Summary values computed via `useMemo` for instant reactivity.
+
+---
+
+## 👩‍💻 Developer
+
+**Vasundara Harika** — Final Year B.Tech Student | IIIT
+
+---
+
+<div align="center">
+
+Made with ❤️ for the Zorvyn FinTech Assessment
+
+⭐ Star this repo if you find it useful!
+
+</div>
