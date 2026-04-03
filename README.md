@@ -32,6 +32,7 @@
   </tr>
   <tr>
     <td><img src="public/screenshot7.png" width="280"/><br/><sub>Help & Support</sub></td>
+    <td><img src="public/screenshot7.png" width="280"/><br/><sub>Dark Theme</sub></td>
   </tr>
 </table>
 </div>
@@ -164,19 +165,6 @@ npm run preview
 | Import transactions | ✅ | ✅ |
 
 Switch roles using the dropdown in the navbar. The UI visibly changes — Admin sees action buttons, checkboxes, and delete icons that Viewer does not.
-
----
-
-## 🔐 Technical Decisions & Edge Cases
-
-- **Service Layer Pattern**: Implemented an API utility that attempts to connect to JSON Server but automatically falls back to static data if the server is offline (essential for Vercel demo).
-- **RBAC Logic**: UI elements like "Add Transaction" and "Edit" are conditionally rendered based on the active role stored in Context, simulating true security protocols.
-- **404 Handling**: Implemented a custom `NotFound` page to handle invalid URLs gracefully and guide users back to the dashboard.
-- **Performance**: Used `useMemo` for heavy chart data calculations to prevent unnecessary re-renders.
-- **Time-Period Filtering**: Global `timeRange` state in Context filters transactions across all views (Summary Cards, Charts, Transactions Table) with previous-period percentage change comparison.
-- **Color System**: Warm orange (#F97316) primary accent with clean white cards on light blue-gray backgrounds. Fully themed dark mode with slate tones.
-- **Toast System**: Built into Context with auto-dismiss timers. No external library needed.
-- **Bug Fix Strategy**: Stale closure bug in `addTransaction`/`editTransaction` fixed by using functional state updaters (`prev => ...`). Summary values computed via `useMemo` for instant reactivity.
 
 ---
 
