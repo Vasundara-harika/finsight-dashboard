@@ -32,7 +32,7 @@
   </tr>
   <tr>
     <td><img src="public/screenshot7.png" width="280"/><br/><sub>Help & Support</sub></td>
-    <td><img src="public/screenshot7.png" width="280"/><br/><sub>Dark Theme</sub></td>
+    <td><img src="public/screenshot8.png" width="280"/><br/><sub>Dark Theme</sub></td>
   </tr>
 </table>
 </div>
